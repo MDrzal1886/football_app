@@ -1,0 +1,172 @@
+@mixin animate(
+  $animation,
+  $duration,
+  $times,
+  $delay,
+  $count,
+  $direction,
+  $fill
+) {
+  animation: $animation $duration $times $delay $count $direction $fill;
+}
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-size: 10px;
+  height: 200vh;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 50px;
+  background-color: black;
+  color: white;
+  h1 {
+    position: absolute;
+    min-width: 100vw;
+    left: 0;
+    text-align: center;
+  }
+}
+
+.navigationPanel {
+  position: fixed;
+  top: 0;
+  left: -70%;
+  width: 70%;
+  bottom: 0;
+  background-color: black;
+  color: white;
+  ul {
+    list-style-type: none;
+    li {
+      a {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 10px 10px 20px;
+        font-size: 1.7rem;
+        text-decoration: none;
+        color: white;
+        text-transform: uppercase;
+        border-bottom: 1px solid white;
+        border-left: 0px solid white;
+        transition: 0.2s linear;
+        &.active {
+          border-left: 15px solid white;
+        }
+        img {
+          width: 30px;
+        }
+      }
+    }
+  }
+}
+
+.logoContainer {
+  margin: 30px auto;
+  width: 100px;
+  padding: 20px;
+  border-radius: 50%;
+  background-color: white;
+  .logo {
+    width: 100%;
+  }
+}
+
+.navigationBtn {
+  position: relative;
+  z-index: 1;
+  margin-left: 10px;
+  width: 35px;
+  height: 35px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+}
+
+.navigationCloseBtn {
+  position: absolute;
+  right: 15px;
+  top: 13px;
+  background-color: transparent;
+  font-size: 2rem;
+  color: white;
+  border: none;
+}
+
+.hide {
+  @include keyframes(hidePanel) {
+    0% {
+      left: 0;
+      box-shadow: 9px 15px 8px -4px rgba(0, 0, 0, 1);
+    }
+    100% {
+      left: -70%;
+      box-shadow: none;
+    }
+  }
+  @include animate(hidePanel, 0.3s, linear, 0s, 1, normal, forwards);
+}
+
+.show {
+  @include keyframes(showPanel) {
+    0% {
+      left: -70%;
+      box-shadow: none;
+    }
+    100% {
+      left: 0;
+      box-shadow: 9px 15px 8px -4px rgba(0, 0, 0, 1);
+    }
+  }
+  @include animate(showPanel, 0.3s, linear, 0s, 1, normal, forwards);
+}
+
+.slide {
+  @include keyframes(slidePanel) {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 70%;
+    }
+  }
+  @include animate(slidePanel, 0.3s, linear, 0s, 1, normal, forwards);
+}
+
+.backSlide {
+  @include keyframes(backSlidePanel) {
+    0% {
+      left: 70%;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  @include animate(backSlidePanel, 0.3s, linear, 0s, 1, normal, forwards);
+}
