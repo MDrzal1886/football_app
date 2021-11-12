@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Start from "./components/Start";
 import Navigation from "./layouts/Navigation";
-import Main from "./Main";
+import Main from "./components/Main";
 
 function App() {
   return (
@@ -8,22 +9,12 @@ function App() {
       <div className="container">
         <Navigation />
         <Switch>
-          <Route exact path="/" component={() => <Main title="start" />} />
+          <Route exact path="/" component={Start} />
+          <Route path="/Ligue2" component={Main} />
           <Route
-            path="/bundesliga"
-            component={() => <Main title="bundesliga" />}
+            path="/championship"
+            component={Main}
           />
-          <Route
-            path="/eredivisie"
-            component={() => <Main title="eredivisie" />}
-          />
-          <Route path="/laliga" component={() => <Main title="laliga" />} />
-          <Route path="/Ligue1" component={() => <Main title="Ligue1" />} />
-          <Route
-            path="/premierleague"
-            component={() => <Main title="premierleague" />}
-          />
-          <Route path="/seriea" component={() => <Main title="seriea" />} />
         </Switch>
       </div>
     </Router>
