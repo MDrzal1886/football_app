@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, Switch, Route, useRouteMatch } from "react-router-dom";
 import LeagueTabel from "./LeagueTabel";
 import TopScorers from "./TopScorers";
+import TeamData from "./TeamData";
+import ErrorPage from "./ErrorPage";
 const Main = () => {
   const {
     championshipTabel,
@@ -11,26 +13,29 @@ const Main = () => {
     ligueTwoTopScorers,
   } = useContext(AppContext);
 
+  const match = useRouteMatch();
   const location = useLocation();
 
-  const ligueOrChampionshipTabel =
-    location.pathname === "/ligue2" ? (
-      <LeagueTabel league={ligueTwoTabel} />
+  const ligueOrChampionship =
+    location.pathname === "/ligue 2" ? (
+      <>
+        <LeagueTabel league={ligueTwoTabel} />
+        <TopScorers league={ligueTwoTopScorers} />
+      </>
     ) : (
-      <LeagueTabel league={championshipTabel} />
-    );
-
-  const ligueOrChampionshipTopScorers =
-    location.pathname === "/ligue2" ? (
-      <TopScorers league={ligueTwoTopScorers} />
-    ) : (
-      <TopScorers league={championshipTopScorers} />
+      <>
+        <LeagueTabel league={championshipTabel} />
+        <TopScorers league={championshipTopScorers} />
+      </>
     );
 
   return (
     <main className="pageContainer">
-      {ligueOrChampionshipTabel}
-      {ligueOrChampionshipTopScorers}
+      <Switch>
+        <Route exact path={match.url} render={() => ligueOrChampionship} />
+        <Route path={`${match.url}/:teamName`} component={TeamData} />
+        <Route component={ErrorPage} />
+      </Switch>
     </main>
   );
 };

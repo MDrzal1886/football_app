@@ -1,7 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { NavLink, useLocation } from "react-router-dom";
-import { useContext } from "react";
+import {
+  faBars,
+  faTimes,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../AppContext";
 import logo from "../images/footballAppLogo.png";
 import englandFlag from "../images/englandFlag.png";
@@ -11,6 +15,9 @@ const Navigation = () => {
   const { navigationPanelActive, setNavigationPanelActive } =
     useContext(AppContext);
 
+  const history = useHistory();
+  const location = useLocation();
+
   const handleNavBtnClick = () => {
     if (navigationPanelActive === true) {
       setNavigationPanelActive(false);
@@ -18,6 +25,19 @@ const Navigation = () => {
       setNavigationPanelActive(true);
     }
   };
+
+  const handleGoBackClick = () => {
+    history.goBack();
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, [location.pathname]);
 
   const showOrHidePanel = () => {
     if (navigationPanelActive === false) {
@@ -29,27 +49,32 @@ const Navigation = () => {
     }
   };
 
-  const location = useLocation();
-
-  const titleText = () => {
-    switch (location.pathname) {
-      case "/ligue2":
-        return "ligue 2";
-      case "/championship":
-        return "championship";
-
-      default:
-        return "Football App";
-    }
-  };
+  const titleText =
+    location.pathname
+      .split("/", [location.pathname.length])
+      .splice(-1, 1)
+      .toString() || "Football App";
 
   return (
     <>
       <nav className="navigation">
-        <button className="navigationBtn" onClick={handleNavBtnClick}>
+        {location.pathname
+          .split("/", [location.pathname.length])
+          .splice(-1, 1)
+          .toString() ? (
+          <button className="navigationBtn" onClick={handleGoBackClick}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+        ) : null}
+        <button
+          className="navigationBtn"
+          onClick={handleNavBtnClick}
+          disabled={navigationPanelActive}
+        >
           <FontAwesomeIcon icon={faBars} />
         </button>
-        <h1>{titleText()}</h1>
+
+        <h1>{titleText}</h1>
       </nav>
       <div className={`navigationPanel ${showOrHidePanel()}`}>
         <button className="navigationCloseBtn" onClick={handleNavBtnClick}>
@@ -72,7 +97,7 @@ const Navigation = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={handleNavBtnClick} to="/ligue2">
+              <NavLink onClick={handleNavBtnClick} to="/ligue 2">
                 Ligue 2
                 <img src={franceFlag} alt="france flag" />
               </NavLink>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Genos&family=Marcellus&display=swap");
+
 @mixin animate(
   $animation,
   $duration,
@@ -20,11 +22,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 body,
 html {
-  font-size: 10px;
+  font-family: "Genos", sans-serif;
+  font-size: 12px;
 }
 
 .container {
@@ -40,7 +44,7 @@ html {
   right: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   height: 50px;
   background-color: black;
   color: white;
@@ -99,10 +103,33 @@ html {
   }
 }
 
+.errorPage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  img {
+    width: 50%;
+  }
+  h1 {
+    margin: 20px 0;
+  }
+  a {
+    border: 1px black solid;
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 5px 10px;
+  }
+}
+
 .navigationBtn {
   position: relative;
   z-index: 2;
-  margin-left: 10px;
+  margin: 0 10px;
   width: 35px;
   height: 35px;
   color: white;
@@ -127,6 +154,7 @@ html {
   left: 0;
   width: 100%;
   min-height: 100vh;
+  padding: 100px 0;
   .appLogo {
     position: absolute;
     top: 50%;
@@ -134,72 +162,158 @@ html {
     transform: translate(-50%, -50%);
     width: 70%;
   }
-}
-
-.leagueTabelContainer {
-  margin: 80px auto;
-  width: 90%;
-  box-shadow: 0px 0px 8px 3px black;
-  display: flex;
-  flex-direction: column;
-  .tabelHeader {
-    line-height: 20px;
-    background-color: red;
-    color: white;
+  .teamContainer {
+    margin: 0 auto;
+    width: 90%;
+    .teamHeaderContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      .buttonsContainer {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        margin: 20px auto;
+        .overallHomeAwayBtn {
+          border: 1px black solid;
+          background-color: transparent;
+          text-transform: uppercase;
+          padding: 5px 10px;
+        }
+        .active {
+          background-color: black;
+          color: white;
+        }
+      }
+      .teamDetails {
+        width: 100%;
+        margin: 20px 0;
+        text-align: center;
+      }
+    }
   }
-  .tabelTeamRow {
+  .teamSquadContainer {
+    margin: 20px auto;
     display: flex;
-    align-items: center;
-    padding: 5px 5px;
-    border-bottom: 1px solid grey;
+    flex-direction: column;
+    .teamSquadPositions {
+      margin: 20px 0;
+      box-shadow: 0px 0px 8px 3px black;
+    }
+    h3 {
+      text-align: center;
+      background-color: black;
+      color: white;
+      line-height: 30px;
+      border-bottom: 1px solid grey;
+    }
+  }
+  .playerContainer {
+    margin: 0 auto;
+    width: 90%;
+    .playerHeaderContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      img {
+        box-shadow: 0px 0px 8px 3px black;
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+
+  .tabelContainer {
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0px 0px 8px 3px black;
+    display: flex;
+    flex-direction: column;
+    .tabelHeader {
+      line-height: 20px;
+      background-color: black;
+      color: white;
+      .yellow {
+        color: yellow;
+      }
+      .red {
+        color: red;
+      }
+    }
+    .tabelRow {
+      display: flex;
+      align-items: center;
+      padding: 5px 2px;
+      border-bottom: 1px solid grey;
+      justify-content: space-between;
+      .leaguePosition {
+        color: white;
+      }
+    }
     .teamName {
       display: flex;
       align-items: center;
-      flex-grow: 1;
+      width: 100%;
       text-align: left;
+      .teamNameLink {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+      }
       .teamLogo {
         margin-right: 5px;
         height: 20px;
       }
     }
-    div {
+    .playerName {
+      width: 100%;
+      text-align: left;
+      .playerNameLink {
+        text-decoration: none;
+        color: black;
+      }
+    }
+    .leagueTabelDiv {
       min-width: 25px;
+    }
+    div {
+      min-width: 36px;
       text-align: center;
-      padding: 2px;
+      padding: 1px;
     }
   }
 }
 
-.topScorersTabelContainer {
-  margin: 80px auto;
-  width: 90%;
-  box-shadow: 0px 0px 8px 3px black;
-  display: flex;
-  flex-direction: column;
-  .topScorersHeader {
-    line-height: 20px;
-    background-color: red;
-    color: white;
-  }
-  .topScorersPlayerRow {
+.tabelLegendContainer {
+  margin: 20px;
+  .legendRow {
+    margin: 5px 0;
     display: flex;
-    align-items: center;
-    padding: 5px 5px;
-    border-bottom: 1px solid grey;
-    .playerName {
-      flex-grow: 1;
-      text-align: left;
-    }
-    .teamName {
-      min-width: 30%;
-      text-align: left;
-    }
-    div {
-      min-width: 25px;
-      text-align: center;
-      padding: 2px;
+    span {
+      margin-left: 10px;
     }
   }
+}
+.legendSquare {
+  width: 25px;
+  min-height: 17px;
+}
+.promotion {
+  background-color: #004682;
+}
+.promotionPlayOffs {
+  background-color: #1ea8ec;
+}
+.relegationPlayOffs {
+  background-color: #bd0000;
+}
+.relegation {
+  background-color: #ff4141;
+}
+.stay {
+  background-color: #4e4e4e;
 }
 
 .hide {
