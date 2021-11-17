@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import Start from "./components/Start";
 import Navigation from "./layouts/Navigation";
 import Main from "./components/Main";
@@ -6,7 +6,7 @@ import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
-    <Router>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <div className="container">
         <Navigation />
         <Switch>
@@ -16,7 +16,7 @@ function App() {
           <Route component={ErrorPage} />
         </Switch>
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 

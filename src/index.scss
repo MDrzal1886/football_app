@@ -265,7 +265,7 @@ html {
       }
       img {
         @media (min-width: 992px) {
-          width: 250px;
+          width: 200px;
         }
       }
       .buttonsContainer {
@@ -340,7 +340,9 @@ html {
   }
 
   .leagueTabelContainer {
-    min-width: 440px;
+    @media (min-width: 992px) {
+      min-width: 440px;
+    }
   }
 
   .tabelContainer {
@@ -420,6 +422,10 @@ html {
   width: 90%;
   max-width: 440px;
   margin: 20px auto;
+  @media (min-width: 992px) {
+    margin: 20px 0;
+    width: 100%;
+  }
   .legendRow {
     margin: 5px 0;
     display: flex;
