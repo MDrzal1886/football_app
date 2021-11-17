@@ -11,6 +11,7 @@ const Main = () => {
     championshipTopScorers,
     ligueTwoTabel,
     ligueTwoTopScorers,
+    error,
   } = useContext(AppContext);
 
   const match = useRouteMatch();
@@ -31,11 +32,15 @@ const Main = () => {
 
   return (
     <main className="pageContainer">
-      <Switch>
-        <Route exact path={match.url} render={() => ligueOrChampionship} />
-        <Route path={`${match.url}/:teamName`} component={TeamData} />
-        <Route component={ErrorPage} />
-      </Switch>
+      {error ? (
+        <ErrorPage />
+      ) : (
+        <Switch>
+          <Route exact path={match.url} render={() => ligueOrChampionship} />
+          <Route path={`${match.url}/:teamName`} component={TeamData} />
+          <Route component={ErrorPage} />
+        </Switch>
+      )}
     </main>
   );
 };

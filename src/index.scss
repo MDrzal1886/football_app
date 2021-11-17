@@ -29,12 +29,28 @@ body,
 html {
   font-family: "Genos", sans-serif;
   font-size: 12px;
+  @media (min-width: 576px) {
+    font-size: 13px;
+  }
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+  @media (min-width: 992px) {
+    font-size: 15px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 16px;
+  }
+  @media (min-width: 1400px) {
+    font-size: 17px;
+  }
 }
 
 .container {
   width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
+  min-width: 320px;
+  height: 100%;
+  min-height: 320px;
 }
 
 .navigation {
@@ -45,13 +61,18 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
+  min-height: 50px;
+  min-width: 320px;
   background-color: black;
   color: white;
   z-index: 1;
+  @media (min-width: 992px) {
+    min-height: 100px;
+  }
   h1 {
     position: absolute;
-    min-width: 100vw;
+    width: 100vw;
+    min-width: 320px;
     left: 0;
     text-align: center;
     text-transform: uppercase;
@@ -61,14 +82,25 @@ html {
 .navigationPanel {
   position: fixed;
   top: 0;
-  left: -70%;
-  width: 70%;
-  bottom: 0;
+  left: -224px;
+  width: 224px;
+  height: 100%;
+  min-height: 320px;
+  min-width: 224px;
   background-color: black;
   color: white;
   z-index: 1;
+  overflow: auto;
+  @media (min-height: 320px) {
+    overflow: hidden;
+  }
+  @media (min-width: 576px) {
+    left: -350px;
+    width: 350px;
+  }
   ul {
     list-style-type: none;
+    min-height: 320px;
     li {
       a {
         display: flex;
@@ -81,6 +113,12 @@ html {
         border-bottom: 1px solid white;
         border-left: 0px solid white;
         transition: 0.2s linear;
+        @media (min-width: 992px) {
+          cursor: pointer;
+          &:hover {
+            border-left: 15px solid white;
+          }
+        }
         &.active {
           border-left: 15px solid white;
         }
@@ -104,17 +142,17 @@ html {
 }
 
 .errorPage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
+  min-width: 320px;
+  min-height: 320px;
   text-align: center;
+  margin: 0 auto;
   img {
-    width: 50%;
+    width: 25%;
   }
   h1 {
     margin: 20px 0;
+    padding: 0 20px;
   }
   a {
     border: 1px black solid;
@@ -136,6 +174,20 @@ html {
   background-color: transparent;
   border: none;
   font-size: 2rem;
+  transition: 0.2s;
+  @media (min-width: 992px) {
+    cursor: pointer;
+    margin: 0 20px;
+    &:hover {
+      transform: scale(1.1);
+    }
+    &:disabled {
+      &:hover {
+        transform: scale(1);
+        cursor: default;
+      }
+    }
+  }
 }
 
 .navigationCloseBtn {
@@ -146,6 +198,15 @@ html {
   font-size: 2rem;
   color: white;
   border: none;
+  transition: 0.2s;
+  @media (min-width: 992px) {
+    right: 30px;
+    top: 30px;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 
 .pageContainer {
@@ -153,33 +214,82 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
-  padding: 100px 0;
+  min-width: 320px;
+  height: 100%;
+  min-height: 320px;
+  padding: 60px 0;
+  @media (min-width: 992px) {
+    padding: 120px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
   .appLogo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
+    display: block;
+    margin: 100px auto;
+    width: 200px;
+    @media (orientation: landscape) {
+      margin-top: 10px;
+    }
+    @media (min-width: 576px) {
+      width: 250px;
+    }
+    @media (min-width: 768px) {
+      width: 300px;
+    }
+    @media (min-width: 992px) {
+      width: 400px;
+    }
+    @media (min-width: 1200px) {
+      width: 500px;
+    }
+    @media (min-width: 1400px) {
+      width: 600px;
+    }
   }
   .teamContainer {
     margin: 0 auto;
     width: 90%;
+    @media (min-width: 992px) {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
     .teamHeaderContainer {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      @media (min-width: 992px) {
+        min-width: 440px;
+      }
+      img {
+        @media (min-width: 992px) {
+          width: 250px;
+        }
+      }
       .buttonsContainer {
         width: 90%;
+        max-width: 440px;
         display: flex;
         justify-content: space-between;
         margin: 20px auto;
+        @media (min-width: 992px) {
+          width: 100%;
+        }
         .overallHomeAwayBtn {
           border: 1px black solid;
           background-color: transparent;
           text-transform: uppercase;
           padding: 5px 10px;
+          transition: 0.2s;
+          @media (min-width: 992px) {
+            cursor: pointer;
+            &:hover {
+              background-color: black;
+              color: white;
+            }
+          }
         }
         .active {
           background-color: black;
@@ -197,6 +307,10 @@ html {
     margin: 20px auto;
     display: flex;
     flex-direction: column;
+    @media (min-width: 992px) {
+      margin: 20px 0;
+      min-width: 440px;
+    }
     .teamSquadPositions {
       margin: 20px 0;
       box-shadow: 0px 0px 8px 3px black;
@@ -212,6 +326,7 @@ html {
   .playerContainer {
     margin: 0 auto;
     width: 90%;
+    max-width: 440px;
     .playerHeaderContainer {
       display: flex;
       justify-content: space-around;
@@ -224,12 +339,21 @@ html {
     }
   }
 
+  .leagueTabelContainer {
+    min-width: 440px;
+  }
+
   .tabelContainer {
     margin: 20px auto;
     width: 90%;
+    max-width: 440px;
     box-shadow: 0px 0px 8px 3px black;
     display: flex;
     flex-direction: column;
+    @media (min-width: 992px) {
+      margin: 20px 0;
+      width: 100%;
+    }
     .tabelHeader {
       line-height: 20px;
       background-color: black;
@@ -277,17 +401,25 @@ html {
     }
     .leagueTabelDiv {
       min-width: 25px;
+      @media (min-width: 576px) {
+        min-width: 35px;
+      }
     }
     div {
       min-width: 36px;
       text-align: center;
       padding: 1px;
+      @media (min-width: 576px) {
+        min-width: 46px;
+      }
     }
   }
 }
 
 .tabelLegendContainer {
-  margin: 20px;
+  width: 90%;
+  max-width: 440px;
+  margin: 20px auto;
   .legendRow {
     margin: 5px 0;
     display: flex;
@@ -323,17 +455,30 @@ html {
       box-shadow: 9px 15px 8px -4px rgba(0, 0, 0, 1);
     }
     100% {
-      left: -70%;
+      left: -224px;
       box-shadow: none;
     }
   }
   @include animate(hidePanel, 0.3s, linear, 0s, 1, normal, forwards);
+  @media (min-width: 576px) {
+    @include keyframes(hidePanel) {
+      0% {
+        left: 0;
+        box-shadow: 9px 15px 8px -4px rgba(0, 0, 0, 1);
+      }
+      100% {
+        left: -350px;
+        box-shadow: none;
+      }
+    }
+    @include animate(hidePanel, 0.3s, linear, 0s, 1, normal, forwards);
+  }
 }
 
 .show {
   @include keyframes(showPanel) {
     0% {
-      left: -70%;
+      left: -224px;
       box-shadow: none;
     }
     100% {
@@ -342,4 +487,17 @@ html {
     }
   }
   @include animate(showPanel, 0.3s, linear, 0s, 1, normal, forwards);
+  @media (min-width: 576px) {
+    @include keyframes(showPanel) {
+      0% {
+        left: -350px;
+        box-shadow: none;
+      }
+      100% {
+        left: 0;
+        box-shadow: 9px 15px 8px -4px rgba(0, 0, 0, 1);
+      }
+    }
+    @include animate(showPanel, 0.3s, linear, 0s, 1, normal, forwards);
+  }
 }

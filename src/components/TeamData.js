@@ -14,25 +14,32 @@ const TeamData = () => {
   const match = useRouteMatch();
 
   const teamElement = () => {
-    const teamStat = championshipTabel.filter(
-      (team) => team.team_name === teamName
-    )[0];
-    if (teamStat) {
-      const teamSquad = championshipTeams.filter(
-        (team) => team.team_key === teamStat.team_id
-      )[0];
-      return <Team teamStat={teamStat} teamSquad={teamSquad} />;
-    } else {
-      const teamStat = ligueTwoTabel.filter(
+    if (
+      championshipTabel &&
+      championshipTeams &&
+      ligueTwoTabel &&
+      ligueTwoTeams
+    ) {
+      const teamStat = championshipTabel.filter(
         (team) => team.team_name === teamName
       )[0];
       if (teamStat) {
-        const teamSquad = ligueTwoTeams.filter(
+        const teamSquad = championshipTeams.filter(
           (team) => team.team_key === teamStat.team_id
         )[0];
         return <Team teamStat={teamStat} teamSquad={teamSquad} />;
-      } else return <ErrorPage />;
-    }
+      } else {
+        const teamStat = ligueTwoTabel.filter(
+          (team) => team.team_name === teamName
+        )[0];
+        if (teamStat) {
+          const teamSquad = ligueTwoTeams.filter(
+            (team) => team.team_key === teamStat.team_id
+          )[0];
+          return <Team teamStat={teamStat} teamSquad={teamSquad} />;
+        } else return <ErrorPage />;
+      }
+    } else return null;
   };
 
   return (

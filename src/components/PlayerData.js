@@ -10,22 +10,8 @@ const PlayerData = () => {
   const { playerName } = useParams();
 
   const playerElement = () => {
-    const team = [...championshipTeams].filter((team) => {
-      const players = team.players;
-      const playerFilter = players.filter(
-        (player) => player.player_name === playerName
-      );
-      if (playerFilter.length > 0) {
-        return true;
-      } else return false;
-    })[0];
-    if (team) {
-      const playerStat = team.players.filter(
-        (player) => player.player_name === playerName
-      )[0];
-      return <Player playerStat={playerStat} />;
-    } else {
-      const team = [...ligueTwoTeams].filter((team) => {
+    if (championshipTeams && ligueTwoTeams) {
+      const team = [...championshipTeams].filter((team) => {
         const players = team.players;
         const playerFilter = players.filter(
           (player) => player.player_name === playerName
@@ -39,8 +25,24 @@ const PlayerData = () => {
           (player) => player.player_name === playerName
         )[0];
         return <Player playerStat={playerStat} />;
-      } else return <ErrorPage />;
-    }
+      } else {
+        const team = [...ligueTwoTeams].filter((team) => {
+          const players = team.players;
+          const playerFilter = players.filter(
+            (player) => player.player_name === playerName
+          );
+          if (playerFilter.length > 0) {
+            return true;
+          } else return false;
+        })[0];
+        if (team) {
+          const playerStat = team.players.filter(
+            (player) => player.player_name === playerName
+          )[0];
+          return <Player playerStat={playerStat} />;
+        } else return <ErrorPage />;
+      }
+    } else return null;
   };
 
   return <>{playerElement()}</>;

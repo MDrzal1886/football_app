@@ -3,25 +3,29 @@ import { Link, useRouteMatch } from "react-router-dom";
 const TopScorers = ({ league }) => {
   const match = useRouteMatch();
 
-  const fiveBestScorers = [
-    ...league.sort((a, b) => b.goals - a.goals || b.assists - a.assists),
-  ].splice(0, 5);
+  const fiveBestScorers = league
+    ? [
+        ...league.sort((a, b) => b.goals - a.goals || b.assists - a.assists),
+      ].splice(0, 5)
+    : null;
 
-  const topScorersElements = fiveBestScorers.map((player, index) => (
-    <div className="tabelRow" key={player.player_key}>
-      <div>{index + 1}</div>
-      <div className="playerName">
-        <Link
-          className="playerNameLink"
-          to={`${match.url}/${player.team_name}/${player.player_name}`}
-        >
-          {player.player_name}
-        </Link>
-      </div>
-      <div>{player.goals ? player.goals : 0}</div>
-      <div>{player.assists ? player.assists : 0}</div>
-    </div>
-  ));
+  const topScorersElements = fiveBestScorers
+    ? fiveBestScorers.map((player, index) => (
+        <div className="tabelRow" key={player.player_key}>
+          <div>{index + 1}</div>
+          <div className="playerName">
+            <Link
+              className="playerNameLink"
+              to={`${match.url}/${player.team_name}/${player.player_name}`}
+            >
+              {player.player_name}
+            </Link>
+          </div>
+          <div>{player.goals ? player.goals : 0}</div>
+          <div>{player.assists ? player.assists : 0}</div>
+        </div>
+      ))
+    : null;
 
   return (
     <div className="tabelContainer">
