@@ -122,8 +122,8 @@ const LeagueTabel = ({ league }) => {
           <div className="teamName">Drużyna</div>
           <div className="leagueTabelDiv">M</div>
           <div className="leagueTabelDiv">W</div>
-          <div className="leagueTabelDiv">D</div>
-          <div className="leagueTabelDiv">L</div>
+          <div className="leagueTabelDiv">R</div>
+          <div className="leagueTabelDiv">P</div>
           <div className="leagueTabelDiv">B</div>
           <div className="leagueTabelDiv">Pkt</div>
         </div>

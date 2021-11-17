@@ -123,8 +123,8 @@ const Team = ({ teamStat, teamSquad }) => {
               <div>#</div>
               <div>M</div>
               <div>W</div>
-              <div>D</div>
-              <div>L</div>
+              <div>R</div>
+              <div>P</div>
               <div>B</div>
               <div>Pkt</div>
             </div>
