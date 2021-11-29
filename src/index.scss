@@ -51,6 +51,31 @@ html {
   min-width: 320px;
   height: 100%;
   min-height: 320px;
+  .startContainer {
+    padding: 60px 0 0;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    @media (min-width: 992px) {
+      padding: 120px 0 0;
+    }
+    .leagueButton {
+      display: none;
+      text-decoration: none;
+      color: black;
+      text-align: center;
+      img {
+        width: 150px;
+      }
+      @media (min-width: 992px) {
+        display: block;
+        transition: 0.2s linear;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
 }
 
 .navigation {
@@ -226,10 +251,9 @@ html {
   }
   .appLogo {
     display: block;
-    margin: 100px auto;
     width: 200px;
-    @media (orientation: landscape) {
-      margin-top: 10px;
+    @media (orientation: portrait) {
+      margin-top: 100px;
     }
     @media (min-width: 576px) {
       width: 250px;
@@ -383,10 +407,14 @@ html {
       width: 100%;
       text-align: left;
       .teamNameLink {
+        width: 100%;
         display: flex;
         align-items: center;
         text-decoration: none;
         color: black;
+        &:hover {
+          font-weight: bold;
+        }
       }
       .teamLogo {
         margin-right: 5px;
@@ -399,6 +427,9 @@ html {
       .playerNameLink {
         text-decoration: none;
         color: black;
+        &:hover {
+          font-weight: bold;
+        }
       }
     }
     .leagueTabelDiv {
