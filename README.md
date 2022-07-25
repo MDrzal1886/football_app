@@ -1,5 +1,7 @@
 # football_app
 
+## link to GitHub Pages: https://mdrzal1886.github.io/football_app/#/
+
 This app is similar to liveScore.
 
 ## This app is build by create-react-app
